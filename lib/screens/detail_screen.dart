@@ -138,12 +138,12 @@ class _DetailScreenState extends State<DetailScreen> {
                       },
                       icon: Icon(
                         Icons.thumb_up,
-                        color: _isLiked ? Colors.blue : FB_DARK_PRIMARY,
+                        color: _isLiked ? FB_TEXT_COLOR_WHITE : FB_DARK_PRIMARY,
                       ),
                       label: CustomFont(
                         text: (_currentLikes == 0) ? 'Like' : _currentLikes.toString(),
                         fontSize: ScreenUtil().setSp(12),
-                        color: _isLiked ? Colors.blue : FB_DARK_PRIMARY,
+                        color: _isLiked ? FB_TEXT_COLOR_WHITE : FB_DARK_PRIMARY,
                         maxLines: 1, 
                       ),
                     ),

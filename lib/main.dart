@@ -1,8 +1,11 @@
+import 'package:bermudez_mobileprog/screens/detail_screen.dart';
 import 'package:bermudez_mobileprog/screens/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'screens/newsfeed_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/login_screen.dart'; 
+import 'screens/register_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -22,11 +25,14 @@ class MainApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Glyza Facebook', 
-          initialRoute: '/home',
+          initialRoute: '/login',
           routes: {
             '/newsfeed': (context) => const NewsFeedScreen(), 
-            '/home': (context) => const HomeScreen(),
+            '/home': (context) => const HomeScreen(userName: ''), 
+            '/detail': (context) => const DetailScreen(userName: '', postContent: '', date: ''),
             '/notification': (context) => NotificationScreen(),
+            '/login': (context) => LogInScreen(),
+            '/register': (context) => RegisterScreen(),
           },
         );
       },

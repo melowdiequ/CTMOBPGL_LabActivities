@@ -7,7 +7,8 @@ import '../screens/notification_screen.dart';
 import '../screens/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String userName; 
+  const HomeScreen({super.key, required this.userName}); 
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -17,21 +18,22 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
-  final List<String> _titles = [
-    'melowdiequ',    
-    'Friends',        
-    'Notifications',  
-    'Princess Glyza Bermudez',     
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final List<String> titles = [
+      'melowdiequ',    
+      'Friends',        
+      'Notifications',  
+      widget.userName, 
+    ];
+
     return Scaffold(
       appBar: AppBar(
         shadowColor: FB_TEXT_COLOR_WHITE,
         elevation: 2,
         title: CustomFont(
-          text: _titles[_selectedIndex],
+          text: titles[_selectedIndex], // Updated to use local titles list
           fontSize: ScreenUtil().setSp(25),
           color: FB_PRIMARY,
           fontFamily: 'Klavika',
@@ -39,7 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
 
-      /// 🔹 PAGE VIEW (must match navbar count)
       body: PageView(
         controller: _pageController,
         onPageChanged: (page) {
@@ -47,15 +48,15 @@ class _HomeScreenState extends State<HomeScreen> {
             _selectedIndex = page;
           });
         },
-        children: const [
-          NewsFeedScreen(),       // Home
-          Center(child: Text('People Screen')), // Replace later
-          NotificationScreen(),   // Notifications
-          ProfileScreen(),        // Profile
+     
+        children: [
+          const NewsFeedScreen(),       
+          const Center(child: Text('People Screen')), 
+          const NotificationScreen(),   
+          ProfileScreen(userName: widget.userName), // Fixed: Passed the required userName
         ],
       ),
 
-      /// 🔹 BOTTOM NAV BAR
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onTappedBar,
